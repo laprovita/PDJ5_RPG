@@ -28,7 +28,7 @@ public class Movement_Player : MonoBehaviour
     private Vector2 direction;
     private RaycastHit raycastHit;
 
-    void FixedUpdate()
+    void Update()
     {
         MovementPlayer();
         RotateCamera();
