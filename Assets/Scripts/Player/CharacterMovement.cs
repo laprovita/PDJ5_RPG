@@ -9,6 +9,7 @@ public struct CharacterMovementInput
 {
     public bool WantsToJump;
     public Vector2 Moveinput;
+    public Quaternion LookRotation;
 }
 
 
@@ -45,6 +46,9 @@ public class CharacterMovement : MonoBehaviour, ICharacterController
         if (input.Moveinput != Vector2.zero)
         {
             moveInput = new Vector3(input.Moveinput.x, 0, input.Moveinput.y).normalized;
+            moveInput = input.LookRotation* moveInput;
+            moveInput.y = 0;
+            moveInput.Normalize();
         }
 
         if (input.WantsToJump)

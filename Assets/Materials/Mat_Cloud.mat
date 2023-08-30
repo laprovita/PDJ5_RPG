@@ -21,7 +21,8 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mat_Cloud
-  m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 55f823af422856f41a9acc98a5e4da56,
+    type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,10 +30,9 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 3005
   stringTagMap:
     MotionVector: User
-    RenderType: Opaque
   disabledShaderPasses:
   - TransparentDepthPrepass
   - TransparentDepthPostpass
@@ -177,19 +177,19 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Vector1_41106035: 0.01
-    - Vector1_43D5EAE2: 2
-    - Vector1_48CDC292: 0.05
+    - Vector1_41106035: 0.001
+    - Vector1_43D5EAE2: 1
+    - Vector1_48CDC292: 0.02
     - Vector1_55270DD0: 2
     - Vector1_64D43F9C: 2
-    - Vector1_7892429F: 100
-    - Vector1_8AC6A5F0: 12
+    - Vector1_7892429F: 0
+    - Vector1_8AC6A5F0: 10
     - Vector1_9A2E072E: -1
-    - Vector1_A7AB5E81: 1
-    - Vector1_AD9F434F: 8
-    - Vector1_CE2A4BA3: 20
-    - Vector1_D50D2EF9: 36000
-    - Vector1_DCFD0278: 5
+    - Vector1_A7AB5E81: 15
+    - Vector1_AD9F434F: 3
+    - Vector1_CE2A4BA3: 1
+    - Vector1_D50D2EF9: 500
+    - Vector1_DCFD0278: 20
     - Vector1_E026CCB: 2
     - _AORemapMax: 1
     - _AORemapMin: 0
@@ -275,7 +275,8 @@ Material:
     - _PPDPrimitiveLength: 1
     - _PPDPrimitiveWidth: 1
     - _Parallax: 0.005
-    - _QueueOffset: 0
+    - _QueueControl: 0
+    - _QueueOffset: 5
     - _RayTracing: 0
     - _ReceiveShadows: 1
     - _ReceivesSSR: 1
@@ -328,10 +329,10 @@ Material:
     - _ZTestTransparent: 4
     - _ZWrite: 1
     m_Colors:
-    - Color_4ED77376: {r: 0.49261305, g: 0.534191, b: 0.8490566, a: 0}
-    - Color_971180CD: {r: 1, g: 1, b: 1, a: 0}
+    - Color_4ED77376: {r: 0.7346685, g: 0.5479708, b: 0.8867924, a: 0}
+    - Color_971180CD: {r: 0.4253737, g: 0.5427156, b: 0.745283, a: 0}
     - Vector4_885F7A09: {r: 1, g: 0, b: 0, a: 90}
-    - Vector4_C61B8983: {r: 0.05, g: 1, b: 0.2, a: 3}
+    - Vector4_C61B8983: {r: 0, g: 1, b: -0.3, a: 2.7}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
