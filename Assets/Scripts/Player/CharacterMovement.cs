@@ -46,7 +46,7 @@ public class CharacterMovement : MonoBehaviour, ICharacterController
         if (input.Moveinput != Vector2.zero)
         {
             moveInput = new Vector3(input.Moveinput.x, 0, input.Moveinput.y).normalized;
-            moveInput = input.LookRotation* moveInput;
+            moveInput = input.LookRotation* moveInput* Time.deltaTime;
             moveInput.y = 0;
             moveInput.Normalize();
         }
@@ -72,6 +72,11 @@ public class CharacterMovement : MonoBehaviour, ICharacterController
         if (Motor.GroundingStatus.IsStableOnGround)
         {
             var targetVelocity = moveInput * maxSpeed;
+
+            if(Input.GetKey(KeyCode.LeftShift))
+            {
+                targetVelocity *= 1.5f;
+            }
             currentVelocity = Vector3.MoveTowards(currentVelocity, targetVelocity, acceleration * Time.deltaTime);
 
             if (Time.time < jumpRequestExpireTime )

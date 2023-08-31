@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
 
     private void LateUpdate()
     {
-        cameraTarget.position = characterMovement.transform.position + Vector3.up * targetHeight;
+        cameraTarget.position = characterMovement.transform.position + Vector3.up * targetHeight ;
         cameraTarget.rotation = Quaternion.Euler(targetLook.x, targetLook.y,0);
     }
 }
