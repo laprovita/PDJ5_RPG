@@ -68,15 +68,15 @@ public class Rigidbody_Moviment : MonoBehaviour
             currentSpeed = runSpeed;
         }
 
-        //Move o objeto para a posição indicada. Também tem problemas de colisão pois ele seta a posição que o objeto dever ir. (Funciona melhor no 2D).
-        rigidbody.MovePosition(transform.TransformDirection(new Vector3(0, rigidbody.velocity.y) + direction.normalized * currentSpeed));
+        //Move o objeto para a posiï¿½ï¿½o indicada. Tambï¿½m tem problemas de colisï¿½o pois ele seta a posiï¿½ï¿½o que o objeto dever ir. (Funciona melhor no 2D).
+        //rigidbody.MovePosition(transform.TransformDirection(new Vector3(0, rigidbody.velocity.y) + direction.normalized * currentSpeed));
 
-        //Seta a velocidade do corpo rigido e a partir dessa nova velocidade ele calcula o movimento do meu objeto. Aqui já temos um calculo maior de física. 
-        //Não funciona mt bem para colisões de 2 objetos de corpor rigido.
+        //Seta a velocidade do corpo rigido e a partir dessa nova velocidade ele calcula o movimento do meu objeto. Aqui jï¿½ temos um calculo maior de fï¿½sica. 
+        //Nï¿½o funciona mt bem para colisï¿½es de 2 objetos de corpor rigido.
         rigidbody.velocity = transform.TransformDirection(new Vector3(0, rigidbody.velocity.y) + direction.normalized * currentSpeed);
 
-        //Add em geral são usados quando queremos criar um sistema que considere totalmente a física. Ele funciona como um acelerador.
-        rigidbody.AddForce(transform.TransformDirection(new Vector3(0, rigidbody.velocity.y) + direction.normalized * currentSpeed), ForceMode.Acceleration);
+        //Add em geral sï¿½o usados quando queremos criar um sistema que considere totalmente a fï¿½sica. Ele funciona como um acelerador.
+        //rigidbody.AddForce(transform.TransformDirection(new Vector3(0, rigidbody.velocity.y) + direction.normalized * currentSpeed), ForceMode.Acceleration);
 
         rigidbody.angularVelocity = new Vector3(0, rotation * moveSpeed, 0);
     }

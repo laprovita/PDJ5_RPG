@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Transform_Movement : MonoBehaviour
 {
-    [Header("Variáveis")]
+    [Header("Variï¿½veis")]
     [SerializeField] private float speedMovement;
     [SerializeField] private float speedRotation;
 
@@ -16,6 +16,8 @@ public class Transform_Movement : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] GameObject prefab_Lua;
     [SerializeField] Transform luaCopyTransform;
+
+
     private void Update()
     {
         MovementObject();
@@ -27,7 +29,7 @@ public class Transform_Movement : MonoBehaviour
         direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical") );
         rotation = Input.GetAxis("RotateKeyBoard");
 
-        direction.Normalize();
+        //direction.Normalize();
         luaCopyTransform.Translate(direction.x * speedMovement * Time.deltaTime, 0, direction.y * speedMovement * Time.deltaTime);
         luaCopyTransform.Rotate(0, rotation * speedRotation * Time.deltaTime, 0);
 
