@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 074e98a7cbfc5564ab142a1ec69e7a55, type: 3}
+  m_Name: Enemy_Exploder
+  m_EditorClassIdentifier: 
+  level: 0
+  health: 1
+  attack: 3
+  speed: 3
+  type: 2
+  animatorController: {fileID: 0}
+  mesh:
+  - {fileID: -2228417370725966487, guid: 09c7ced6928902449a6f8740863e5629, type: 3}
+  - {fileID: -8678823145569952518, guid: 94792dfdaa74b3a4e9bf9b120dc6a674, type: 3}
+  - {fileID: -5053925668127403250, guid: 132828ecbfc479b4886bf554dcf6ce86, type: 3}
+  materials:
+  - {fileID: 6699446615349125189, guid: 09c7ced6928902449a6f8740863e5629, type: 3}
+  - {fileID: -6087771358165109452, guid: 09c7ced6928902449a6f8740863e5629, type: 3}
+  - {fileID: -3846018093981099296, guid: 09c7ced6928902449a6f8740863e5629, type: 3}
+  - {fileID: 4874126678125670354, guid: 09c7ced6928902449a6f8740863e5629, type: 3}
+  - {fileID: -6922793697723135513, guid: 09c7ced6928902449a6f8740863e5629, type: 3}
+  - {fileID: -6629797300637803691, guid: 09c7ced6928902449a6f8740863e5629, type: 3}
