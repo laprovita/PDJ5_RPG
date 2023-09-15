@@ -10,6 +10,10 @@ public class CellInventory : MonoBehaviour
     public TMP_Text itemName;
     public TMP_Text countIntTxt;
     public TMP_Text weightTxt;
+
+    public GameObject infoBuff;
+    public TMP_Text infoBuffTxt;
+
     public GameObject btn_Equip;
     public GameObject btn_Use;
 
@@ -28,6 +32,7 @@ public class CellInventory : MonoBehaviour
 
         weightInt = item.Weight;
         ID_Reference = item.ID;
+        infoBuffTxt.text = item.DescriptionBuff;
 
         if (item.type.ToString() == "Equip")
         {
@@ -37,6 +42,16 @@ public class CellInventory : MonoBehaviour
         {
             btn_Use.SetActive(true);
         }
+    }
+
+    public void ActiveBuffInfo()
+    {
+        infoBuff.SetActive(true);
+    }
+
+    public void DeactivateBuffInfo() 
+    {
+        infoBuff.SetActive(false);
     }
 
     public void AddItem(Item_Scriptable item)

@@ -10,11 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e77446a7f1e0a974b93b94af23394d0c, type: 3}
-  m_Name: Health_Potion
+  m_Name: Bis
   m_EditorClassIdentifier: 
-  Name: "Po\xE7\xE3o de Vida"
-  Icon: {fileID: 21300000, guid: cfad8ef0b5f68ac46bd02b3156b377a4, type: 3}
-  Description: Recupera +25 pontos de vida instantaneamente.
-  DescriptionBuff: Vida +25
-  Weight: 0.25
-  type: 1
+  Name: Bis Lendario
+  Icon: {fileID: 21300000, guid: d01ab80aec5efa5468fd9dcc6adf4831, type: 3}
+  Description: "Muitos j\xE1 tentaram comelo, mas ninguem teve a capacidade para
+    derrotalo!"
+  DescriptionBuff: -100 vida
+  Weight: 100
+  refItemObject: {fileID: 0}
+  type: 3

@@ -8,12 +8,16 @@ public class Item_Scriptable : ScriptableObject
     public string Name;
     public Sprite Icon;
     public string Description;
+    public string DescriptionBuff;
     public float Weight;
+    public GameObject refItemObject;
  
     public enum Type
     {
         Equip,
-        Use
+        Use,
+        None,
+        Mission
     };
     public Type type;
 

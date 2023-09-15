@@ -23,7 +23,6 @@ public class Inventory : MonoBehaviour
 
 
     [SerializeField] private TMP_Text txt_Info;
-    [SerializeField] private int countItens;
 
 
 
@@ -56,7 +55,6 @@ public class Inventory : MonoBehaviour
 
         cellList.Add(refCell);
         idList.Add(item.ID);
-        countItens++;
     }
     private void AddCountInExistingItem(Item_Scriptable item)
     {
@@ -65,7 +63,7 @@ public class Inventory : MonoBehaviour
             if (cell.ID_Reference == item.ID)
             {
                 cell.AddItem(item);
-                countItens++;
+                break;
             }
         }
     }

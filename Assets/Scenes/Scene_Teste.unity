@@ -8035,9 +8035,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbd0b3088175444bb7f2efa71186010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  invetory: []
-  constructList: 
+  inventory: []
+  idList: 
   cellList: []
+  allItens: []
   baseCell: {fileID: 8304963915305519535, guid: 48288c3c9ec68c64cb57328e581ef170,
     type: 3}
   contentInventory: {fileID: 898317982}
@@ -9925,7 +9926,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 462804591}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.39337358
+  m_Size: 0.39337355
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
