@@ -24,8 +24,17 @@ public class Inventory : MonoBehaviour
 
     [SerializeField] private TMP_Text txt_Info;
 
+    Item_Scriptable itemRef;
 
+    public void SetNewNameForItem(Item_Scriptable item)
+    {
+        itemRef = item;
+    }
 
+    public void GetItemReference(string name)
+    {
+        itemRef.ItemName = name;
+    }
 
     public void AddItem(Item_Scriptable item)
     {

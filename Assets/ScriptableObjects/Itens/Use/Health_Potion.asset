@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77446a7f1e0a974b93b94af23394d0c, type: 3}
   m_Name: Health_Potion
   m_EditorClassIdentifier: 
-  Name: "Po\xE7\xE3o de Vida"
+  ItemName: ShowEsseItem
   Icon: {fileID: 21300000, guid: cfad8ef0b5f68ac46bd02b3156b377a4, type: 3}
   Description: Recupera +25 pontos de vida instantaneamente.
   DescriptionBuff: Vida +25
   Weight: 0.25
+  refItemObject: {fileID: 0}
   type: 1

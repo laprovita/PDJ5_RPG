@@ -7092,7 +7092,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1162089310}
         m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
-        m_MethodName: RemoveItem
+        m_MethodName: SetNewNameForItem
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 11400000, guid: c0ddbd000fcc9a0488349cc8409e8566,
@@ -7101,6 +7101,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1162089310}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: GetItemReference
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ShowEsseItem
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1003188091
@@ -8045,7 +8057,6 @@ MonoBehaviour:
   panel_Inventory: {fileID: 34429455}
   status_Player: {fileID: 1162089309}
   txt_Info: {fileID: 1125955475}
-  countItens: 0
 --- !u!1 &1169873737
 GameObject:
   m_ObjectHideFlags: 0

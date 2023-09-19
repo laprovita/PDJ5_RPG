@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77446a7f1e0a974b93b94af23394d0c, type: 3}
   m_Name: Bis
   m_EditorClassIdentifier: 
-  Name: Bis Lendario
+  ItemName: SuperBis
   Icon: {fileID: 21300000, guid: d01ab80aec5efa5468fd9dcc6adf4831, type: 3}
   Description: "Muitos j\xE1 tentaram comelo, mas ninguem teve a capacidade para
     derrotalo!"

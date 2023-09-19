@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e77446a7f1e0a974b93b94af23394d0c, type: 3}
   m_Name: Helmet_01
   m_EditorClassIdentifier: 
-  Name: Capabalde
+  ItemName: Capabaude
   Icon: {fileID: 21300000, guid: 553b8f1bf7338ea48bceb02915c3f825, type: 3}
   Description: "Um excelente capacete feito do pl\xE1stico mais sublime encontrado
     nas f\xE1bricas Mattel. Pode aumentar sua prote\xE7\xE3o e tamb\xE9m coletar
     \xE1gua em dias chuvosos."
   DescriptionBuff: DEF +5
   Weight: 1.5
+  refItemObject: {fileID: 0}
   type: 0

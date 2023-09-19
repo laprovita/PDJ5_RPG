@@ -27,7 +27,7 @@ public class CellInventory : MonoBehaviour
     {
         item_Scriptable = item;
         itemImage.sprite = item.Icon;
-        itemName.text = item.Name;
+        itemName.text = item.ItemName;
         weightTxt.text = item.Weight.ToString();
 
         weightInt = item.Weight;
