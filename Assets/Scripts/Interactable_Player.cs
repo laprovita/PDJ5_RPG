@@ -7,7 +7,7 @@ public class Interactable_Player : MonoBehaviour
     [Header("Referencia dos componentes")]
     [SerializeField] Transform pivotPosition;
     [SerializeField] GameObject panel_PressF;
-
+    [SerializeField] Inventory inventory;
     [Header("Variaveis de saida")]
     [SerializeField] RaycastHit hit;
 
@@ -55,6 +55,12 @@ void Update()
         if(collider.CompareTag("Interactable"))
         {
             panel_PressF.SetActive(true);
+        }
+
+        if (collider.CompareTag("ItemFloor"))
+        {
+            inventory.AddItem(collider.GetComponent<Item_InFloor>().item);
+            Destroy(collider.gameObject);
         }
     }
 

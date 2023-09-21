@@ -19,5 +19,6 @@ MonoBehaviour:
     \xE1gua em dias chuvosos."
   DescriptionBuff: DEF +5
   Weight: 1.5
-  refItemObject: {fileID: 0}
+  refItemObject: {fileID: 6624801760077746240, guid: fe6eb67c3cd709748b1548ad189825d0,
+    type: 3}
   type: 0

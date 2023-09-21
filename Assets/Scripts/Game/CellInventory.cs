@@ -62,11 +62,15 @@ public class CellInventory : MonoBehaviour
         weightTxt.text = weightInt.ToString();
     }
 
-    public void RemoveItem(Item_Scriptable item)
+    public void RemoveItem()
     {
         countInt--;
         countIntTxt.text = countInt.ToString();
-        weightInt += item.Weight;
+        weightInt -= item_Scriptable.Weight;
         weightTxt.text = weightInt.ToString();
+        if(countInt <= 0)
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

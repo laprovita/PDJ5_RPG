@@ -10,7 +10,8 @@ public class Status_Player : MonoBehaviour
     public float stamina_Add;
 
     [Header("Estatísticas de Peso")]
-    public float weight;
+    public float weight = 1;
+    public float weight_Max;
 
     [Header("Estatísticas Desviar")]
     public int dodge_Count;

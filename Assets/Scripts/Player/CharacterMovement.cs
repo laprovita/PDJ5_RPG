@@ -17,6 +17,10 @@ public struct CharacterMovementInput
 public class CharacterMovement : MonoBehaviour, ICharacterController
 {
     public KinematicCharacterMotor Motor;
+
+    [Header("Referencia de Componentes")]
+    public Status_Player status_Player;
+
     [Header("Ground Movement")]
     public float maxSpeed;
     public float acceleration;
@@ -71,7 +75,7 @@ public class CharacterMovement : MonoBehaviour, ICharacterController
     {
         if (Motor.GroundingStatus.IsStableOnGround)
         {
-            var targetVelocity = moveInput * maxSpeed;
+            var targetVelocity = (moveInput *  maxSpeed)*-(status_Player.weight - status_Player.weight_Max)/100;
 
             if(Input.GetKey(KeyCode.LeftShift))
             {

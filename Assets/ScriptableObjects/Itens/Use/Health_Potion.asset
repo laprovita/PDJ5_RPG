@@ -17,5 +17,6 @@ MonoBehaviour:
   Description: Recupera +25 pontos de vida instantaneamente.
   DescriptionBuff: Vida +25
   Weight: 0.25
-  refItemObject: {fileID: 0}
+  refItemObject: {fileID: 463590864560455702, guid: 0215f579aa3f45849b7f7edc6744af01,
+    type: 3}
   type: 1

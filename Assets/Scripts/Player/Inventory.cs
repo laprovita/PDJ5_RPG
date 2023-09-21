@@ -120,7 +120,7 @@ public class Inventory : MonoBehaviour
     }
     private void RemoveCountInExistingItem(Item_Scriptable item, CellInventory cell)
     {
-        cell.RemoveItem(item);
+        cell.RemoveItem();
     }
 
 
