@@ -1,3 +1,4 @@
+using Cinemachine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -7,12 +8,17 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public CharacterMovement characterMovement;
+    public CinemachineVirtualCamera virtualCamera;
     public Transform cameraTarget;
+
     public float targetHeight;
+
     public Vector2 XRotationRange = new Vector2(-70, 70);
     public Quaternion lookRotation => cameraTarget.rotation;
 
     private Vector2 targetLook;
+
+
 
     public void IncrementLookRotation(Vector2 lookDelta)
     {
@@ -24,5 +30,11 @@ public class CameraController : MonoBehaviour
     {
         cameraTarget.position = characterMovement.transform.position + Vector3.up * targetHeight ;
         cameraTarget.rotation = Quaternion.Euler(targetLook.x, targetLook.y,0);
+
+        if (virtualCamera.Follow == null)
+        {
+            virtualCamera.LookAt = null;
+            virtualCamera.Follow = cameraTarget;
+        }
     }
 }

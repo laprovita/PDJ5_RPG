@@ -1,6 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
+
+interface Interactable{
+    public void Interact();
+}
+
+struct StructInteractable
+{
+    public int valor;
+}
+
 
 public class Interactable_Player : MonoBehaviour
 {
@@ -27,7 +39,15 @@ void Update()
                 Debug.DrawRay(pivotPosition.position,pivotPosition.forward, Color.black, 3);
                 if(hit.transform.CompareTag("Interactable"))
                 {
-                    InvokeMethodOnScript(hit.transform.GetComponent<RefScript>().script,"Open");
+                    if(hit.transform.TryGetComponent(out RefScript refScript))
+                    {
+                        InvokeMethodOnScript(refScript.script, "Open");
+                    }
+                    
+                    else if (hit.transform.TryGetComponent(out Interactable interactable))
+                    {
+                        interactable.Interact();
+                    }
                 }
             }
         }
@@ -35,8 +55,8 @@ void Update()
 
     public void InvokeMethodOnScript(MonoBehaviour targetScript, string methodName)
     {
-        var scriptType = targetScript.GetType();
-        var method = scriptType.GetMethod(methodName);
+        Type scriptType = targetScript.GetType();
+        MethodInfo method = scriptType.GetMethod(methodName);
 
         if (method != null)
         {

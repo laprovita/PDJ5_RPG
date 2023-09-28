@@ -18,6 +18,7 @@ public class SimpleDialogueSystem : MonoBehaviour
     [SerializeField] TextMeshProUGUI text_Dialogue;
     [SerializeField] Image avatarDialogue;
     [SerializeField] GameObject canvas;
+    [SerializeField] Seller seller;
 
     [Header("Variaveis do sistema")]
     [SerializeField] List<IntListContainer> dialogueLinesList = new List<IntListContainer>();
@@ -51,6 +52,7 @@ public class SimpleDialogueSystem : MonoBehaviour
         {
             indexDialogue++;
             canvas.SetActive(false);
+            seller.ExitSeller();
             //Setar os próximos passos caso precise.
         }
     }
