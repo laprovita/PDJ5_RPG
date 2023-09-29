@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LootChest : MonoBehaviour
+public class Dash : MonoBehaviour, Interactable
 {
-    public void Open()
+    // velocidade, distancia, dano,
+
+    public void Interact()
     {
         Debug.Log("Parabéns, você encontrou um baú de pilhagem, e por isso ganhou: R$" + Random.Range(5,150) + " moedas.");
-
-
+        velocidade, distancia, dano,
     }
 }
