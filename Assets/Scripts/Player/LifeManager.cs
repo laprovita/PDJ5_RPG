@@ -16,6 +16,11 @@ public class LifeManager : MonoBehaviour
         get{ return CurrentLife;}
     }
 
+    private void Start()
+    {
+        CurrentLife = MaxLife;
+    }
+
     public void AddLife(int value)
     {
         CurrentLife += value;
