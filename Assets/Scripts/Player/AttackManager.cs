@@ -4,41 +4,55 @@ using UnityEngine;
 
 public class AttackManager : MonoBehaviour
 {
-    [Header("Referencias Componentes")]
+    [Header("Variaveis")]
+    [SerializeField] private int indexCombo;
+    [SerializeField] bool isAttacking;
+    [SerializeField] float timeAttack;
+    [SerializeField] int maxCountAttacks;
+
+    [SerializeField] private float timeCurrent;
+    float timePress;
+
+    [Header("Componentes")]
     [SerializeField] Animator animator;
 
-    [SerializeField] private float timeAttack;
-    [SerializeField] private int countAttack;
     private void Attack()
     {
-        timeAttack += Time.deltaTime;
-
-        if (Input.GetMouseButtonDown(0) && timeAttack >= 0.7f) //Verifica se clicamos no botão 0 do mouse e valida se já passamos pelo segundo 0.7f do time.
+        timeCurrent += Time.deltaTime;
+        if(Input.GetMouseButtonUp(0))
         {
-            countAttack++;
-
-            if (countAttack >3)
+            if(timeCurrent > 0.75f)
             {
-                countAttack = 1;
+                indexCombo++;
+
+            if(indexCombo > maxCountAttacks)
+            {
+                indexCombo = 0;
             }
 
-            //if (timeAttack >= animator.GetCurrentAnimatorStateInfo(0).length - 0.1f)
-            //{
-            //  countAttack = 1;
-            //}
-            animator.SetTrigger("Attack_0" + countAttack.ToString());
-            timeAttack = 0;
-            //if (timeAttack > animator.GetCurrentAnimatorStateInfo(0).length)
-            //{
+            if(timeCurrent > 1.2f)
+            {
+                indexCombo = 1;
+            }
 
-            //}
+            animator.SetTrigger("Attack_0" + indexCombo.ToString());
+
+            timeCurrent = 0;
+            }
+            
         }
-    }
 
-    public void ResetAttack()
-    {
-        countAttack = 0;
-        Debug.Log("Attack");
+        else if(Input.GetMouseButton(0) && timeCurrent > 0.75f)
+        {
+            timePress += Time.deltaTime;
+
+            if(timePress > 1f) //tempo pressionado
+            {
+                animator.SetTrigger("PressAttack_01");
+                timePress = 0;
+            }
+        }
+
     }
 
     private void Update()
