@@ -7,56 +7,101 @@ public class AttackManager : MonoBehaviour
     [Header("Variaveis")]
     [SerializeField] private int indexCombo;
     [SerializeField] bool isAttacking;
+    [SerializeField] bool isPressAttacking;
     [SerializeField] float timeAttack;
     [SerializeField] int maxCountAttacks;
 
     [SerializeField] private float timeCurrent;
-    float timePress;
+    [SerializeField] float timePress;
 
     [Header("Componentes")]
     [SerializeField] Animator animator;
 
-    private void Attack()
-    {
-        timeCurrent += Time.deltaTime;
-        if(Input.GetMouseButtonUp(0))
-        {
+    private void BasicAttack()
+    {   
+        //if(Input.GetMouseButtonDown(0))
+        //{
             if(timeCurrent > 0.75f)
             {
                 indexCombo++;
 
-            if(indexCombo > maxCountAttacks)
-            {
-                indexCombo = 0;
-            }
+                if(indexCombo > maxCountAttacks)
+                {
+                    indexCombo = 0;
+                }
 
-            if(timeCurrent > 1.2f)
-            {
-                indexCombo = 1;
-            }
+                if(timeCurrent > 1.2f)
+                {
+                    indexCombo = 1;
+                }
 
-            animator.SetTrigger("Attack_0" + indexCombo.ToString());
+                animator.SetTrigger("Attack_0" + indexCombo.ToString());
 
-            timeCurrent = 0;
+                timeCurrent = 0;
             }
             
-        }
+        //}
+        //timeCurrent += Time.deltaTime;
+    }
 
-        else if(Input.GetMouseButton(0) && timeCurrent > 0.75f)
+    private void SpecialAttack()
+    {
+        animator.SetTrigger("PressAttack_01");
+    }
+
+    private void Block()
+    {
+        if(Input.GetMouseButtonDown(1))
         {
-            timePress += Time.deltaTime;
-
-            if(timePress > 1f) //tempo pressionado
-            {
-                animator.SetTrigger("PressAttack_01");
-                timePress = 0;
-            }
+            animator.SetBool("Block",true);
+            Debug.Log("block");
         }
+
+        if(Input.GetMouseButtonUp(1))
+        {
+            animator.SetBool("Block",false);
+        }
+        
+    }
+    private void Update()
+    {
+        timeCurrent += Time.deltaTime;
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            StartCoroutine(AttackCoroutine());
+        }
+    
+        Block();
 
     }
 
-    private void Update()
+    IEnumerator AttackCoroutine()
     {
-        Attack();
+        float timePressed = 0f;
+        
+         while (Input.GetMouseButton(0))
+        {
+            timePressed += Time.deltaTime;
+            if(timePressed > 0.5f)
+            {
+                Debug.Log("Especial pronto." + timePressed);
+
+            }
+            yield return null;
+        }
+
+        if (timePressed >= 0.5f)
+        {
+            // Ataque pesado
+            Debug.Log("Ataque pesado!");
+            SpecialAttack();
+        }
+        else
+        {
+            // Ataque básico
+            Debug.Log("Ataque básico!");
+            BasicAttack();
+        }
     }
 }
