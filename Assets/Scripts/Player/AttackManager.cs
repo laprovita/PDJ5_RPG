@@ -6,102 +6,80 @@ public class AttackManager : MonoBehaviour
 {
     [Header("Variaveis")]
     [SerializeField] private int indexCombo;
-    [SerializeField] bool isAttacking;
-    [SerializeField] bool isPressAttacking;
     [SerializeField] float timeAttack;
-    [SerializeField] int maxCountAttacks;
+    [SerializeField] List<Attack_Base_Scriptable> attacks_List;
 
-    [SerializeField] private float timeCurrent;
-    [SerializeField] float timePress;
+    [SerializeField] bool firstAttack;
+
+    [SerializeField] private float timeLastAttack;
 
     [Header("Componentes")]
     [SerializeField] Animator animator;
 
-    private void BasicAttack()
-    {   
-        //if(Input.GetMouseButtonDown(0))
-        //{
-            if(timeCurrent > 0.75f)
-            {
-                indexCombo++;
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            AttackClick();
+        }
 
-                if(indexCombo > maxCountAttacks)
+        ExitAttack();
+    }
+
+
+    void AttackClick()
+    {
+        if (Time.time - timeLastAttack >= 0.5f && indexCombo < attacks_List.Count && firstAttack)
+        {
+            CancelInvoke("EndCombo");
+
+            if (Time.time - timeLastAttack >= 0.2f)
+            {
+                animator.runtimeAnimatorController = attacks_List[indexCombo].overrideController;
+                animator.Play("Attack",0,0);
+                firstAttack = false;
+
+                indexCombo++;
+                timeLastAttack = Time.time;
+
+                if (indexCombo > attacks_List.Count)
                 {
                     indexCombo = 0;
                 }
-
-                if(timeCurrent > 1.2f)
-                {
-                    indexCombo = 1;
-                }
-
-                animator.SetTrigger("Attack_0" + indexCombo.ToString());
-
-                timeCurrent = 0;
             }
-            
-        //}
-        //timeCurrent += Time.deltaTime;
-    }
-
-    private void SpecialAttack()
-    {
-        animator.SetTrigger("PressAttack_01");
-    }
-
-    private void Block()
-    {
-        if(Input.GetMouseButtonDown(1))
-        {
-            animator.SetBool("Block",true);
-            Debug.Log("block");
         }
-
-        if(Input.GetMouseButtonUp(1))
+        else if (Time.time - timeLastAttack >= 0.5f && indexCombo < attacks_List.Count && animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.8f)
         {
-            animator.SetBool("Block",false);
-        }
-        
-    }
-    private void Update()
-    {
-        timeCurrent += Time.deltaTime;
+            CancelInvoke("EndCombo");
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            StartCoroutine(AttackCoroutine());
-        }
-    
-        Block();
-
-    }
-
-    IEnumerator AttackCoroutine()
-    {
-        float timePressed = 0f;
-        
-         while (Input.GetMouseButton(0))
-        {
-            timePressed += Time.deltaTime;
-            if(timePressed > 0.5f)
+            if (Time.time - timeLastAttack >= 0.2f)
             {
-                Debug.Log("Especial pronto." + timePressed);
+                animator.runtimeAnimatorController = attacks_List[indexCombo].overrideController;
+                animator.Play("Attack", 0, 0);
 
+                indexCombo++;
+                timeLastAttack = Time.time;
+
+                if (indexCombo > attacks_List.Count)
+                {
+                    indexCombo = 0;
+                }
             }
-            yield return null;
         }
+    }
 
-        if (timePressed >= 0.5f)
+    void ExitAttack() //Método para finalizar o combo 
+    {
+        if (animator.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.9f && animator.GetCurrentAnimatorStateInfo(0).IsTag("Attack")) // A animação está a mais de 90% do tempo total dela? E a animação que estou interagindo possuí a tag "attack"?
         {
-            // Ataque pesado
-            Debug.Log("Ataque pesado!");
-            SpecialAttack();
+            Invoke("EndCombo", 1);
         }
-        else
-        {
-            // Ataque básico
-            Debug.Log("Ataque básico!");
-            BasicAttack();
-        }
+    }
+
+    void EndCombo()
+    {
+        indexCombo= 0;
+        timeLastAttack = Time.time;
+        firstAttack = true;
     }
 }
