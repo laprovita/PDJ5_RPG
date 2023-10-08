@@ -16,7 +16,7 @@ public class Movement_NewInput : MonoBehaviour
         direction = value.ReadValue<Vector2>();
     }
 
-    public void Pular(InputAction.CallbackContext value)
+    public void Pular()
     {
         rigidbody.AddForce(Vector3.up * powerJump);
     }

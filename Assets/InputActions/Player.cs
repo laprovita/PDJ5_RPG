@@ -31,7 +31,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""name"": ""Movimento"",
                     ""type"": ""Value"",
                     ""id"": ""be225a21-9fbc-455f-88f3-5905c189fb4a"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -106,7 +106,7 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""path"": """",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""tt"",
                     ""action"": ""Movimento"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -242,17 +242,109 @@ public partial class @Player: IInputActionCollection2, IDisposable
                     ""action"": ""Pular"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1736b385-84e8-4888-b09b-f2f9977b2836"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Correr"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""MapaMontaria"",
+            ""id"": ""3a63894d-3e72-4098-9889-c368ea19a0ef"",
+            ""actions"": [
+                {
+                    ""name"": ""Movimetancao"",
+                    ""type"": ""Value"",
+                    ""id"": ""f69233dc-fde8-404d-92a3-62c70461adc7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""Teclado"",
+                    ""id"": ""ad27bdd9-1f35-483f-9010-2dfc3bf994ca"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movimetancao"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""4155b083-cc9f-4086-b8a5-8427b29e1166"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movimetancao"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""47db7419-e743-486a-8711-269f19e1be90"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movimetancao"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""d7c94c91-fec8-4920-9dab-bb02eaa029f5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movimetancao"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""16bb614f-d97c-4368-9ad4-6ed4abe1dcb5"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movimetancao"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
     ],
-    ""controlSchemes"": []
+    ""controlSchemes"": [
+        {
+            ""name"": ""tt"",
+            ""bindingGroup"": ""tt"",
+            ""devices"": []
+        }
+    ]
 }");
         // PlayerMovement
         m_PlayerMovement = asset.FindActionMap("PlayerMovement", throwIfNotFound: true);
         m_PlayerMovement_Movimento = m_PlayerMovement.FindAction("Movimento", throwIfNotFound: true);
         m_PlayerMovement_Pular = m_PlayerMovement.FindAction("Pular", throwIfNotFound: true);
         m_PlayerMovement_Correr = m_PlayerMovement.FindAction("Correr", throwIfNotFound: true);
+        // MapaMontaria
+        m_MapaMontaria = asset.FindActionMap("MapaMontaria", throwIfNotFound: true);
+        m_MapaMontaria_Movimetancao = m_MapaMontaria.FindAction("Movimetancao", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -372,10 +464,69 @@ public partial class @Player: IInputActionCollection2, IDisposable
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // MapaMontaria
+    private readonly InputActionMap m_MapaMontaria;
+    private List<IMapaMontariaActions> m_MapaMontariaActionsCallbackInterfaces = new List<IMapaMontariaActions>();
+    private readonly InputAction m_MapaMontaria_Movimetancao;
+    public struct MapaMontariaActions
+    {
+        private @Player m_Wrapper;
+        public MapaMontariaActions(@Player wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Movimetancao => m_Wrapper.m_MapaMontaria_Movimetancao;
+        public InputActionMap Get() { return m_Wrapper.m_MapaMontaria; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(MapaMontariaActions set) { return set.Get(); }
+        public void AddCallbacks(IMapaMontariaActions instance)
+        {
+            if (instance == null || m_Wrapper.m_MapaMontariaActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_MapaMontariaActionsCallbackInterfaces.Add(instance);
+            @Movimetancao.started += instance.OnMovimetancao;
+            @Movimetancao.performed += instance.OnMovimetancao;
+            @Movimetancao.canceled += instance.OnMovimetancao;
+        }
+
+        private void UnregisterCallbacks(IMapaMontariaActions instance)
+        {
+            @Movimetancao.started -= instance.OnMovimetancao;
+            @Movimetancao.performed -= instance.OnMovimetancao;
+            @Movimetancao.canceled -= instance.OnMovimetancao;
+        }
+
+        public void RemoveCallbacks(IMapaMontariaActions instance)
+        {
+            if (m_Wrapper.m_MapaMontariaActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IMapaMontariaActions instance)
+        {
+            foreach (var item in m_Wrapper.m_MapaMontariaActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_MapaMontariaActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public MapaMontariaActions @MapaMontaria => new MapaMontariaActions(this);
+    private int m_ttSchemeIndex = -1;
+    public InputControlScheme ttScheme
+    {
+        get
+        {
+            if (m_ttSchemeIndex == -1) m_ttSchemeIndex = asset.FindControlSchemeIndex("tt");
+            return asset.controlSchemes[m_ttSchemeIndex];
+        }
+    }
     public interface IPlayerMovementActions
     {
         void OnMovimento(InputAction.CallbackContext context);
         void OnPular(InputAction.CallbackContext context);
         void OnCorrer(InputAction.CallbackContext context);
+    }
+    public interface IMapaMontariaActions
+    {
+        void OnMovimetancao(InputAction.CallbackContext context);
     }
 }
