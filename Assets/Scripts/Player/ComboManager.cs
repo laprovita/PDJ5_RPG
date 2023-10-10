@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ComboManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private Animator comboAnimator;
     //[SerializeField] private Weapon weapon;
     [SerializeField]private bool attacking;
+    [SerializeField] private bool nextAttack;
 
     [Header("Variaveis")]
     [SerializeField] private List<Attack_Base_Scriptable> attackBase_Scriptable;
@@ -20,61 +22,80 @@ public class ComboManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Foi apertado o botao do mouse");
-            StartCoroutine(ComboSystem());
+            if (!attacking)
+            {
+                time = 0;
+                comboAnimator.runtimeAnimatorController = attackBase_Scriptable[currentAnimation].overrideController;
+                comboAnimator.Play("Attack", 0, 0);
+                attacking = true;
+                Debug.Log("Foi apertado o botao do attack pela primeira vez");
+            }
+            else
+            {
+                NextAttackCheckCondition();
+                Debug.Log("Foi apertado o botao do attack já com um combo inicializado");
+            }
+
+        }
+
+        if (time > comboAnimator.GetCurrentAnimatorStateInfo(0).length + 1f && !nextAttack)
+        {
+            attacking = false;
+            nextAttack = false;
+            currentAnimation = 0;
         }
     }
 
     void NextAttack()
     {
-        if(attacking)
+        if(nextAttack)
         {
-            currentAnimation++;
-            attacking = false;
+            if (currentAnimation <= attackBase_Scriptable.Count)
+            {
+                currentAnimation++;
+                comboAnimator.runtimeAnimatorController = attackBase_Scriptable[currentAnimation].overrideController;
+                comboAnimator.Play("Attack", 0, 0);
+                time = 0;
+                nextAttack = false;
+            }
+
+            else
+            {
+                currentAnimation = 0;
+                comboAnimator.runtimeAnimatorController = attackBase_Scriptable[currentAnimation].overrideController;
+                comboAnimator.Play("Attack", 0, 0);
+                time = 0;
+                nextAttack = false;
+            }
+
         }
     }
 
-    IEnumerator ComboSystem()
+    void NextAttackCheckCondition()
     {
-        /*
-        Seta a animação do ataque q vammos chamar.
-        boleana de attacking = true;
-        verifico a condição se o time > 70% da animação e menor que o tempo total dela.
-        true > eu quero continuar no combo de ataques. Chamo de novo minha corrotina msm sem o click.
-        false> não quero continuar meu combo, logo eu reseto tudo e volto para o padrão.
-        //if(time > minTime && time < comboAnimator.tempoTotalDaAnimacao)
-        //{
-        // attacking = true;
-        //}
+        if (time > (comboAnimator.GetCurrentAnimatorStateInfo(0).length * 0.7f) && time <= comboAnimator.GetCurrentAnimatorStateInfo(0).length && !nextAttack)
+        {
+            Debug.Log("Next attack confirmado.");
+            StartCoroutine(NextAttackSist());
+        }
+    }
 
-         Primeiro click chama um método específico para o primeiro ataque.
-        */
-        Debug.Log("Startamos a corrotina");
-        attacking = true;
-        if(time > (comboAnimator.GetCurrentAnimatorStateInfo(0).length*0.7f)&& time <=comboAnimator.GetCurrentAnimatorStateInfo(0).length)
-        {
-            yield return new WaitForSeconds(comboAnimator.GetCurrentAnimatorStateInfo(0).length - time);
-            //Esperar a animação de ataque terminar.
-            StartCoroutine(ComboSystem());
-        }
-        else
-        {
-        //    attacking = false;
-        //    currentAnimation = 0;
-        }
+
+    IEnumerator NextAttackSist()
+    {
+
+        Debug.Log("Esperando:" + (comboAnimator.GetCurrentAnimatorStateInfo(0).length - time) + " para o proximo attack");
+        nextAttack = true;
+        yield return new WaitForSeconds(comboAnimator.GetCurrentAnimatorStateInfo(0).length - time);
+
+        NextAttack();
+
     }
 
     void Update()
     {
-
+        time += Time.deltaTime;
         Attack();
-        NextAttack();
-       // //Debug.Log(comboAnimator.GetCurrentAnimatorStateInfo(0).length + ", " + comboAnimator.GetCurrentAnimatorStateInfo(0) + ", " +comboAnimator.GetCurrentAnimatorStateInfo(0).fullPathHash);
-
-        //if(attacking)
-        //{
-
-        //}
     }
 
     void Start()
