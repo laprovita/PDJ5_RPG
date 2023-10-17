@@ -6,5 +6,5 @@ using UnityEngine;
 public class Attack_Base_Scriptable : ScriptableObject
 {
     [SerializeField] public AnimatorOverrideController overrideController;
-    
+    public int damage;  
 }

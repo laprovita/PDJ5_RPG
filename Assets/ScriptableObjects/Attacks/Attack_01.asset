@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Attack_01
   m_EditorClassIdentifier: 
   overrideController: {fileID: 22100000, guid: 165dceccb36fe01448d0c14c41e7b646, type: 2}
+  damage: 10

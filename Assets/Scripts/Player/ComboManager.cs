@@ -8,7 +8,7 @@ public class ComboManager : MonoBehaviour
 {
     [Header("Componentes")]
     [SerializeField] private Animator comboAnimator;
-    //[SerializeField] private Weapon weapon;
+    [SerializeField] private Weapon weapon;
     [SerializeField]private bool attacking;
     [SerializeField] private bool nextAttack;
 
@@ -24,10 +24,12 @@ public class ComboManager : MonoBehaviour
         {
             if (!attacking)
             {
+                
                 time = 0;
                 comboAnimator.runtimeAnimatorController = attackBase_Scriptable[currentAnimation].overrideController;
                 comboAnimator.Play("Attack", 0, 0);
                 attacking = true;
+                weapon.ActiveAttack(attackBase_Scriptable[currentAnimation].damage, comboAnimator.GetCurrentAnimatorStateInfo(0).length - time);
                 Debug.Log("Foi apertado o botao do attack pela primeira vez");
             }
             else
@@ -56,6 +58,7 @@ public class ComboManager : MonoBehaviour
                 comboAnimator.runtimeAnimatorController = attackBase_Scriptable[currentAnimation].overrideController;
                 comboAnimator.Play("Attack", 0, 0);
                 time = 0;
+                weapon.ActiveAttack(attackBase_Scriptable[currentAnimation].damage, comboAnimator.GetCurrentAnimatorStateInfo(0).length - time);
                 nextAttack = false;
             }
 
@@ -65,6 +68,7 @@ public class ComboManager : MonoBehaviour
                 comboAnimator.runtimeAnimatorController = attackBase_Scriptable[currentAnimation].overrideController;
                 comboAnimator.Play("Attack", 0, 0);
                 time = 0;
+                weapon.ActiveAttack(attackBase_Scriptable[currentAnimation].damage, comboAnimator.GetCurrentAnimatorStateInfo(0).length - time);
                 nextAttack = false;
             }
 
@@ -96,10 +100,5 @@ public class ComboManager : MonoBehaviour
     {
         time += Time.deltaTime;
         Attack();
-    }
-
-    void Start()
-    {
-        
     }
 }
