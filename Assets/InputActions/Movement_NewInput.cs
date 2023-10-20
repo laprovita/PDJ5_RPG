@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Movement_NewInput : MonoBehaviour
 {
@@ -11,10 +10,10 @@ public class Movement_NewInput : MonoBehaviour
 
     [SerializeField] private Vector2 direction;
 
-    public void Movimento(InputAction.CallbackContext value)
-    {
-        direction = value.ReadValue<Vector2>();
-    }
+   //public void Movimento(InputAction.CallbackContext value)
+   //{
+   //    direction = value.ReadValue<Vector2>();
+   //}
 
     public void Pular()
     {

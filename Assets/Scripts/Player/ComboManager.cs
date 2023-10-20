@@ -13,7 +13,7 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private bool nextAttack;
 
     [Header("Variaveis")]
-    [SerializeField] private List<Attack_Base_Scriptable> attackBase_Scriptable;
+    [SerializeField] public List<Attack_Base_Scriptable> attackBase_Scriptable;
     [SerializeField] private int currentAnimation;
     [SerializeField] private float time;
 
@@ -52,7 +52,7 @@ public class ComboManager : MonoBehaviour
     {
         if(nextAttack)
         {
-            if (currentAnimation <= attackBase_Scriptable.Count)
+            if (currentAnimation < attackBase_Scriptable.Count-1)
             {
                 currentAnimation++;
                 comboAnimator.runtimeAnimatorController = attackBase_Scriptable[currentAnimation].overrideController;
