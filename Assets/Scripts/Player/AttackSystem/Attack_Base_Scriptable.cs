@@ -9,5 +9,4 @@ public class Attack_Base_Scriptable : ScriptableObject
     public Sprite icon;
     public int damage;
     [SerializeField] public AnimatorOverrideController overrideController;
-
 }
