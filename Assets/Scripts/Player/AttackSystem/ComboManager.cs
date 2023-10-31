@@ -17,6 +17,8 @@ public class ComboManager : MonoBehaviour
     [SerializeField] private int currentAnimation;
     [SerializeField] private float time;
 
+    public int maxLife = 100;
+    public int maxStamina = 100;
 
     private void Attack()
     {
@@ -96,15 +98,41 @@ public class ComboManager : MonoBehaviour
 
     }
 
-    public int GetDamageInCombo(List<int> damageList)
+    public float GetDamageInCombo(List<float> damageList, List<float> buff)
     {
-        int damage = 0;
+        float damage = 0;
         foreach(int value in damageList)
         {
             damage += value;
         }
+
+        foreach(float value in buff)
+        {
+            damage *= value;
+        }
         Debug.Log(damage);
-        return -damage;
+        return damage;
+    }
+
+    public string CheckState(int life, int currentStamina)
+    {
+        if (life > maxLife * 0.9f)
+        {
+            return "Normal";
+        }
+        else if (life > maxLife * 0.5f)
+        {
+            return "Machucado";
+        }
+        else if (life > maxLife * 0.15f && currentStamina > maxStamina * 0.95f)
+        {
+            return "Frenesi";
+        }
+        else
+        {
+            return "Morrendo";
+        }
+
     }
 
     void Update()

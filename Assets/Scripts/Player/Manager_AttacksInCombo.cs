@@ -30,7 +30,7 @@ public class Manager_AttacksInCombo : MonoBehaviour
         if (countSlots < 6)
         {
             TMP_InputField refButton = Instantiate(cellSlot_Default, content).GetComponentInChildren<TMP_InputField>();
-            refButton.onValueChanged.AddListener(delegate { SetMyAttacksInComboManager(); });
+            //refButton.onValueChanged.AddListener(delegate { SetMyAttacksInComboManager(); });
             countSlots++;
         }
     }
