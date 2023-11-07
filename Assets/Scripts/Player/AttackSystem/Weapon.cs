@@ -25,4 +25,13 @@ public class Weapon : MonoBehaviour
         yield return new WaitForSeconds(timeCd);
         DesactiveAttack();
     }
+
+    private void Update()
+    {
+    }
+
+    public string ReturnAttack()
+    {
+        return "Attack";
+    }
 }

@@ -8,6 +8,7 @@ TagManager:
   - Projetil
   - Ground
   - ItemFloor
+  - PlayButton
   layers:
   - Default
   - TransparentFX
