@@ -9,7 +9,6 @@ using UnityEngine.SceneManagement;
 public class UI_Teste: InputTestFixture
 {
     Mouse mouse;
-    int currentTest = 0;
 
     public override void Setup()
     {
@@ -37,6 +36,5 @@ public class UI_Teste: InputTestFixture
         Vector3 screenPos = camera.WorldToScreenPoint(uiElement.transform.position);
         Set(mouse.position, screenPos);
         Click(mouse.leftButton);
-        currentTest = 1;
     }
 }
