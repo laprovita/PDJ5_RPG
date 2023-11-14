@@ -90,6 +90,11 @@ public class Idle : State_Enemy
     {
         Debug.Log("Idle");
         timer += Time.deltaTime;
+
+        //if (timer > )
+        //{
+        //
+        //}
     }
 
     public override void Exit() 

@@ -34,4 +34,40 @@ public class Player_Test: InputTestFixture
         Click(mouse.leftButton);
         Assert.AreEqual("Attack", player.GetComponent<Weapon>().ReturnAttack());
     }
+
+    [UnityTest]
+    public IEnumerator TesteAtividade()
+    {
+        Weapon weapon = new Weapon();
+
+        List<float> damage1 = new List<float> { 5,10,7,-10,8};
+        List<float> buff1 = new List<float> { -2,1.5f,-1};
+
+        Assert.AreEqual(60,GetAllDamageValue(damage1,buff1));
+        return null;
+    }
+
+    public float GetAllDamageValue(List<float> damage, List<float> buff)
+    {
+        float returnDamage = 0;
+
+        foreach (float value in damage)
+        {
+            returnDamage += value;
+        }
+
+        foreach(float value in buff)
+        {
+            returnDamage *= value;
+        }
+
+        return Mathf.Max(returnDamage,0);
+
+        switch (returnDamage)
+        {
+            case > 90:
+
+                break;
+        }
+    }
 }
